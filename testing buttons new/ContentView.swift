@@ -9,10 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     @State var showButtons = true
-    @State var button1Pressed = false
+    @State var button = 0;
     
     
-    @State var orderButtonPressed = false
     
     
     
@@ -24,7 +23,7 @@ struct ContentView: View {
         if showButtons {
             VStack {
                 Button("Drinks") {
-                    button1Pressed = true
+                    button = 1
                     showButtons = false
                 }
                 .padding()
@@ -34,28 +33,36 @@ struct ContentView: View {
                 .padding()
                 
                 Button("Food") {
-                    button1Pressed = false
+                    button = 2
                     showButtons = false
                 }
                 .padding()
-                .background(Color.green)
+                .background(Color.blue)
                 .foregroundColor(.white)
                 .cornerRadius(10)
                 .padding()
                 
                 Button("YOUR ORDER") {
-                    orderButtonPressed = true
+                    button = 3
                     showButtons = false
+                    
                 }
                 .padding()
-                .background(Color.green)
+                .background(Color.orange)
                 .foregroundColor(.white)
                 .cornerRadius(10)
                 .padding()
+                
+                
+                
             }
-        } else {
+        }
+        else {
             VStack {
-                if button1Pressed {
+                
+                switch (button) {
+                    
+                case 1:
                     Button("Coffee") {
                         
                         
@@ -66,7 +73,7 @@ struct ContentView: View {
                         showButtons = true
                     }
                     .padding()
-                    .background(Color.black)
+                    .background(Color.blue)
                     .foregroundColor(.white)
                     .cornerRadius(10)
                     .padding()
@@ -78,7 +85,7 @@ struct ContentView: View {
                         showButtons = true
                     }
                     .padding()
-                    .background(Color.green)
+                    .background(Color.blue)
                     .foregroundColor(.white)
                     .cornerRadius(10)
                     .padding()
@@ -90,7 +97,7 @@ struct ContentView: View {
                         showButtons = true
                     }
                     .padding()
-                    .background(Color.orange)
+                    .background(Color.blue)
                     .foregroundColor(.white)
                     .cornerRadius(10)
                     .padding()
@@ -107,55 +114,105 @@ struct ContentView: View {
                     .cornerRadius(10)
                     .padding()
                     
-                    if orderButtonPressed {
-                        
-                        if pressedButtons.count > 0 {
-                            Text("You pressed:")
-                                .font(.title)
-                            ForEach(pressedButtons, id: \.self) { button in
-                                Text(button)
-                                    .font(.headline)
-                                
-                            }
-                        }
-                    }
-                    else {
+                    
+                    
+                    
+                    
+                case 2:
                     Button("Donuts") {
+                        
+                        pressedButtons.append("Donuts")
                         showButtons = true
                     }
                     .padding()
-                    .background(Color.black)
+                    .background(Color.blue)
                     .foregroundColor(.white)
                     .cornerRadius(10)
                     .padding()
                     
                     Button("Sandwiches") {
+                        pressedButtons.append("Sandwiches")
                         showButtons = true
                     }
                     .padding()
-                    .background(Color.green)
+                    .background(Color.blue)
                     .foregroundColor(.white)
                     .cornerRadius(10)
                     .padding()
                     
                     Button("Toast") {
+                        pressedButtons.append("Toast")
                         showButtons = true
                     }
                     .padding()
-                    .background(Color.orange)
+                    .background(Color.blue)
                     .foregroundColor(.white)
                     .cornerRadius(10)
                     .padding()
+                    
+                    
+                    
+                case 3:
+                        Text("You pressed:")
+                            .font(.title)
+                        ForEach(pressedButtons, id: \.self) { button in
+                            Text(button)
+                                .font(.headline)
+                            
+                        }
+                        Button("Back") {
+                            showButtons = true
+                        }
+                    
+                    
+                    
+                default:
+                    //print("yeah")
+                    Text("Safety")
+                    //showButtons = true
+                
                 }
                 
-
-                        
-                        
-                    }
-                }
+                
+                
+                
+                
+                //if orderButtonPressed {
+                
+                //  if pressedButtons.count > 0 {
+                //     Text("You pressed:")
+                //         .font(.title)
+                //     ForEach(pressedButtons, id: \.self) { button in
+                //        Text(button)
+                //           .font(.headline)
+                
+                //   }
+                // }
+                // }
+                
+                
+                // if orderButtonPressed {
+                
+                //     if pressedButtons.count > 0 {
+                //      Text("You pressed:")
+                //        .font(.title)
+                //     ForEach(pressedButtons, id: \.self) { button in
+                //        Text(button)
+                //            .font(.headline)
+                
+                //    }
+                // }
+                //  }
+                
+                
+                
+            
+                
+                
             }
         }
     }
+}
 
 
 struct ContentView_Previews: PreviewProvider {
