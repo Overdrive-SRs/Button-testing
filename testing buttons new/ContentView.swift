@@ -153,7 +153,7 @@ struct ContentView: View {
                     
                     
                 case 3:
-                        Text("You pressed:")
+                        Text("Your order:")
                             .font(.title)
                         ForEach(pressedButtons, id: \.self) { button in
                             Text(button)
@@ -163,7 +163,11 @@ struct ContentView: View {
                         Button("Back") {
                             showButtons = true
                         }
-                    
+                        .padding()
+                        .background(Color.orange)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                        .padding()
                     
                     
                 default:
